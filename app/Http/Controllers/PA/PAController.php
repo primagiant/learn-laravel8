@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\PembimbingAkademik;
+namespace App\Http\Controllers\PA;
 
 use App\Http\Controllers\Controller;
-use App\Models\PembimbingAkademikModel;
+use App\Models\PAModel;
 use Illuminate\Http\Request;
 
-class PembimbingAkademikController extends Controller
+class PAController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class PembimbingAkademikController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PembimbingAkademikModel  $pembimbingAkademikModel
+     * @param  \App\Models\PAModel  $pAModel
      * @return \Illuminate\Http\Response
      */
-    public function show(PembimbingAkademikModel $pembimbingAkademikModel)
+    public function show(PAModel $pAModel)
     {
         //
     }
@@ -53,10 +53,10 @@ class PembimbingAkademikController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PembimbingAkademikModel  $pembimbingAkademikModel
+     * @param  \App\Models\PAModel  $pAModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(PembimbingAkademikModel $pembimbingAkademikModel)
+    public function edit(PAModel $pAModel)
     {
         //
     }
@@ -65,10 +65,10 @@ class PembimbingAkademikController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PembimbingAkademikModel  $pembimbingAkademikModel
+     * @param  \App\Models\PAModel  $pAModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PembimbingAkademikModel $pembimbingAkademikModel)
+    public function update(Request $request, PAModel $pAModel)
     {
         //
     }
@@ -76,10 +76,10 @@ class PembimbingAkademikController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PembimbingAkademikModel  $pembimbingAkademikModel
+     * @param  \App\Models\PAModel  $pAModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PembimbingAkademikModel $pembimbingAkademikModel)
+    public function destroy(PAModel $pAModel)
     {
         //
     }

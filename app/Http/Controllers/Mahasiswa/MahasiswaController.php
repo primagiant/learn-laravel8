@@ -15,7 +15,27 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        return view('mahasiswa.dashboard');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function portofolio()
+    {
+        return view('mahasiswa.portofolio');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function kegiatan()
+    {
+        return view('mahasiswa.kegiatan');
     }
 
     /**

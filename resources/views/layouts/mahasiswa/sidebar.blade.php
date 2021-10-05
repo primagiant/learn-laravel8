@@ -7,15 +7,11 @@
             <i class="fas fa-tachometer-alt mr-3"></i>
             Dashboard
         </a>
-        <a href="{{ route('admin-portofolio') }}" class="{{(request()->routeIs('admin-portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+        <a href="{{ route('mhs-portofolio') }}" class="{{(request()->routeIs('mhs-portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Portofolio
         </a>
-        <a  href="{{ route('admin-user') }}" class="{{(request()->routeIs('admin-user') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
-            <i class="fas fa-table mr-3"></i>
-            User Account
-        </a>
-        <a href="{{ route('admin-kegiatan') }}" class="{{(request()->routeIs('admin-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+        <a href="{{ route('mhs-kegiatan') }}" class="{{(request()->routeIs('mhs-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-calendar mr-3"></i>
             Kegiatan
         </a>

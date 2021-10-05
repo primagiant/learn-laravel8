@@ -15,7 +15,37 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.dashboard');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function portofolio()
+    {
+        return view('admin.portofolio');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function user()
+    {
+        return view('admin.user');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function kegiatan()
+    {
+        return view('admin.kegiatan');
     }
 
     /**
