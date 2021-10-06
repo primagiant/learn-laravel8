@@ -1,8 +1,8 @@
-<x-admin>
+<x-app-layout>
     <x-slot name="header">
         {{__('Kegiatan')}}
     </x-slot>
 
     <div>
     </div>
-</x-admin>
+</x-app-layout>

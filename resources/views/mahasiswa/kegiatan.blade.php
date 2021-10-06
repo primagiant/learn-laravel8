@@ -1,8 +1,8 @@
-<x-mahasiswa>
+<x-app-layout>
     <x-slot name="header">
         {{__('List Kegiatan')}}
     </x-slot>
 
     <div>
     </div>
-</x-mahasiswa>
+</x-app-layout>
