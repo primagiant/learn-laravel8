@@ -3,18 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 
-// Route::get('/dashboard', [AdminController::class, 'index'])
-//     ->middleware(['auth'])
-//     ->name('dashboard');
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/admin-portofolio', [AdminController::class, 'portofolio'])
+        ->name('admin-portofolio');
 
-Route::get('/admin-portofolio', [AdminController::class, 'portofolio'])
-    ->middleware(['auth'])
-    ->name('admin-portofolio');
+    Route::get('/admin-user', [AdminController::class, 'user'])
+        ->name('admin-user');
 
-Route::get('/admin-user', [AdminController::class, 'user'])
-    ->middleware(['auth'])
-    ->name('admin-user');
-
-Route::get('/admin-kegiatan', [AdminController::class, 'kegiatan'])
-    ->middleware(['auth'])
-    ->name('admin-kegiatan');
+    Route::get('/admin-kegiatan', [AdminController::class, 'kegiatan'])
+        ->name('admin-kegiatan');
+});
