@@ -29,6 +29,15 @@
         </a>
         @endif
 
+        {{-- Pembimbing Akademik --}}
+        @if (Auth::user()->hasRole('pa'))
+        <a href="{{ route('pa-mahasiswa') }}"
+            class="{{(request()->routeIs('pa-mahasiswa') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+            <i class="fas fa-sticky-note mr-3"></i>
+            Mahasiswa
+        </a>
+        @endif
+
         {{-- Mahasiswa --}}
         @if (Auth::user()->hasRole('mahasiswa'))
         <a href="{{ route('mhs-portofolio') }}"
