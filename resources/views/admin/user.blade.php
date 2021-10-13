@@ -24,30 +24,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($users as $user)
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">Lian</td>
-                        <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Admin</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $user['name'] }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $user['email'] }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $user['role'] }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">Aktif</td>
                     </tr>
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">Juka</td>
-                        <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Mahasiswa</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Aktif</td>
-                    </tr>
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">Tunas</td>
-                        <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Mahasiswa</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Aktif</td>
-                    </tr>
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">Gogo</td>
-                        <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Pembimbing Akademik</td>
-                        <td class="py-4 px-6 border-b border-grey-light">Aktif</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
