@@ -34,6 +34,12 @@
                     @endforeach
                 </tbody>
             </table>
+
+            @if (count($users) > 5)
+            <div class="py-3 bg-white px-3 rounded-b-lg">
+                {{$users->links()}}
+            </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
