@@ -6,16 +6,15 @@
     <div>
         <div class="bg-white overflow-auto">
             <table class="text-left w-full border-collapse">
-                <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                 <thead>
-                    <tr class="bg-blue-500 text-white">
+                    <tr class="bg-sidebar text-white">
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Jenis Kegiatan
                         </th>
                         <th
                             class="w-64 py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                            Referenci Point
+                            Referency Point
                         </th>
                     </tr>
                 </thead>

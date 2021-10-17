@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\MahasiswaController;
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
     Route::get('/mhs-portofolio', [MahasiswaController::class, 'portofolio'])

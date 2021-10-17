@@ -4,14 +4,14 @@
     </x-slot>
     <div>
         <div class="mb-3">
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-md">Tambah
+            <button class="bg-sidebar hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-md">Tambah
                 Kegiatan</button>
         </div>
         <div class="bg-white overflow-auto">
             <table class="text-left w-full border-collapse">
                 <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                 <thead>
-                    <tr class="bg-blue-500 text-white">
+                    <tr class="bg-sidebar text-white">
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             #</th>

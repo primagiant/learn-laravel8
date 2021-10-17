@@ -1,9 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
+
+    // Hanya Admin Yang dapat Membuat User Baru
+    Route::get('/register', [RegisteredUserController::class, 'create'])
+        ->name('register');
+
+    Route::post('/register', [RegisteredUserController::class, 'store'])
+        ->name('register');
+
     Route::get('/admin-portofolio', [AdminController::class, 'portofolio'])
         ->name('admin-portofolio');
 

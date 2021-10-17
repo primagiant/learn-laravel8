@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PA\PAController;
+use App\Http\Controllers\PAController;
 
 Route::group(['middleware' => ['auth', 'role:pa']], function () {
     Route::get('/pa-mahasiswa', [PAController::class, 'mahasiswa'])

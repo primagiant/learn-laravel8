@@ -4,11 +4,12 @@
     </x-slot>
 
     <div>
-        <div class="bg-white overflow-auto">
+        <a href="{{ route('register') }}" class="py-2 px-4 bg-sidebar text-white rounded-lg">Tambah Akun</a>
+        <div class="bg-white overflow-auto mt-3">
             <table class="text-left w-full border-collapse">
                 <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                 <thead>
-                    <tr class="bg-blue-500 text-white">
+                    <tr class="bg-sidebar text-white">
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Name</th>
@@ -21,6 +22,9 @@
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Status</th>
+                        <th
+                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +34,12 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user['email'] }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user['role'] }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">Aktif</td>
+                        <td class="py-4 px-6 border-b border-grey-light">
+                            <a onclick="return confirm('Apakah anda yakin menghapus akun ini ?')" href=""
+                                class="text-white px-2 py-1 bg-red-500 rounded-full text-xs">Hapus
+                                Akun
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
