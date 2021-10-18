@@ -13,6 +13,6 @@ class Mahasiswa extends Model
 
     public function angkatan()
     {
-        return $this->hasOne('Angkatan', 'angkatan_id', 'id');
+        return $this->belongsTo(Angkatan::class, 'angkata_id', 'id');
     }
 }
