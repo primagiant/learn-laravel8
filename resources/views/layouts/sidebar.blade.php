@@ -1,7 +1,8 @@
 <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
     <div class="p-6">
         <a href="{{ route('dashboard') }}"
-            class="text-center text-white text-3xl font-semibold uppercase hover:text-gray-300">{{config('app.name', 'Laravel')}}</a>
+            class="text-center text-white text-3xl font-semibold uppercase hover:text-gray-300">{{config('app.name',
+            'Laravel')}}</a>
     </div>
     <nav class="text-white text-base font-semibold pt-3">
         <a href="{{ route('dashboard') }}"
@@ -26,6 +27,21 @@
             class="{{(request()->routeIs('admin-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-calendar mr-3"></i>
             Kegiatan
+        </a>
+        <a href="{{ route('admin-fakultas') }}"
+            class="{{(request()->routeIs('admin-fakultas') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+            <i class="fas fa-hotel mr-3"></i>
+            Fakultas
+        </a>
+        <a href="{{ route('admin-prodi') }}"
+            class="{{(request()->routeIs('admin-prodi') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+            <i class="fas fa-door-open mr-3"></i>
+            Prodi
+        </a>
+        <a href="{{ route('admin-angkatan') }}"
+            class="{{(request()->routeIs('admin-angkatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+            <i class="fas fa-suitcase mr-3"></i>
+            Angkatan
         </a>
         @endif
 
