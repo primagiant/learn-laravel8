@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisKegiatan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
-class MahasiswaController extends Controller
+class KegiatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $jenis_kegiatan = JenisKegiatan::paginate(8);
+        return view('admin.kegiatan', [
+            'jenis_kegiatan' => $jenis_kegiatan,
+        ]);
     }
 
     /**
@@ -25,7 +27,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        //
     }
 
     /**
@@ -36,11 +38,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        //
     }
 
     /**

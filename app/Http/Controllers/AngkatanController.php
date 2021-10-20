@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Angkatan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
-class MahasiswaController extends Controller
+class AngkatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $angkatan = Angkatan::all();
+        return view('admin.angkatan', [
+            'angkatan' => $angkatan,
+        ]);
     }
 
     /**
@@ -25,7 +27,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        return view('admin.angkatan.add');
     }
 
     /**
@@ -36,22 +38,10 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        Angkatan::create([
+            'tahun' => $request->tahun,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('/admin-angkatan');
     }
 
     /**
@@ -62,7 +52,11 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $angkatan = Angkatan::find($id);
+        return view('admin.angkatan.edit', [
+            'tahun' => $angkatan['tahun'],
+            'id' => $angkatan['id']
+        ]);
     }
 
     /**
@@ -74,7 +68,10 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $angkatan = Angkatan::find($id);
+        $angkatan->tahun = $request->tahun;
+        $angkatan->save();
+        return redirect('/admin-angkatan');
     }
 
     /**
@@ -85,6 +82,7 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Angkatan::destroy($id);
+        return back();
     }
 }

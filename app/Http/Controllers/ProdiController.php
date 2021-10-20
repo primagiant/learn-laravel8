@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Main;
+use App\Models\Fakultas;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
-class MahasiswaController extends Controller
+class ProdiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $prodi = Prodi::all();
+        return view('admin.prodi', [
+            'prodi' => $prodi,
+        ]);
     }
 
     /**
@@ -25,7 +29,10 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        $fakultas = Fakultas::all();
+        return view('admin.prodi.add', [
+            'fakultas' => $fakultas,
+        ]);
     }
 
     /**
@@ -36,22 +43,13 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        Prodi::create([
+            'name' => Main::nameFormat($request->name),
+            'display_name' => $request->name,
+            'description' => $request->description,
+            'fakultas_id' => $request->fakultas,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('/admin-prodi');
     }
 
     /**
@@ -62,7 +60,12 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fakultas = Fakultas::all();
+        $prodi = Prodi::find($id);
+        return view('admin.prodi.edit', [
+            'prodi' => $prodi,
+            'fakultas' => $fakultas,
+        ]);
     }
 
     /**
@@ -74,7 +77,13 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prodi = Prodi::find($id);
+        $prodi->name = Main::nameFormat($request->name);
+        $prodi->display_name = $request->name;
+        $prodi->description = $request->description;
+        $prodi->fakultas_id = $request->fakultas;
+        $prodi->save();
+        return redirect('/admin-prodi');
     }
 
     /**
@@ -85,6 +94,7 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Prodi::destroy($id);
+        return back();
     }
 }

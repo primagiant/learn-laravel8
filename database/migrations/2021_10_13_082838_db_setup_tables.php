@@ -39,6 +39,7 @@ class DbSetupTables extends Migration
         Schema::create('tb_pa', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
 

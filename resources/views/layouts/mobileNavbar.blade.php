@@ -17,16 +17,6 @@
 
         {{-- Admin --}}
         @if (Auth::user()->hasRole('admin'))
-        <a href="{{ route('admin-portofolio') }}"
-            class="{{(request()->routeIs('admin-portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
-            <i class="fas fa-sticky-note mr-3"></i>
-            Portofolio
-        </a>
-        <a href="{{ route('admin-user') }}"
-            class="{{(request()->routeIs('admin-user') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
-            <i class="fas fa-table mr-3"></i>
-            User Account
-        </a>
         <a href="{{ route('admin-kegiatan') }}"
             class="{{(request()->routeIs('admin-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
             <i class="fas fa-calendar mr-3"></i>

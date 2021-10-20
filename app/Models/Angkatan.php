@@ -10,4 +10,9 @@ class Angkatan extends Model
     use HasFactory;
     protected $table = 'tb_angkatan';
     protected $guarded = [];
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class, 'angkatan_id', 'id');
+    }
 }

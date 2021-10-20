@@ -4,10 +4,10 @@
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-        <form action="{{ route('edit-prodi') }}" method="POST" class="p-10 bg-white rounded shadow-xl">
+        <form action="{{ route('edit-prodi', ['id'=>$prodi->id]) }}" method="POST"
+            class="p-10 bg-white rounded shadow-xl">
             @csrf
             @method('put')
-            <input value="{{$prodi->id}}" type="hidden" name="id">
             <div>
                 <label class="text-sm" for="namaProdi">Nama Prodi</label>
                 <div>

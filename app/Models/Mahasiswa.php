@@ -13,6 +13,21 @@ class Mahasiswa extends Model
 
     public function angkatan()
     {
-        return $this->belongsTo(Angkatan::class, 'angkata_id', 'id');
+        return $this->belongsTo(Angkatan::class, 'angkatan_id', 'id');
+    }
+
+    public function pa()
+    {
+        return $this->belongsTo(PembimbingAkademik::class, 'pa_id', 'id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
 }

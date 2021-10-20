@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PembimbingAkademik;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class MahasiswaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,20 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $users = User::paginate(5);
+
+        $arr = [];
+        foreach ($users as $user) {
+            array_push($arr, [
+                "name" => $user['name'],
+                "email" => $user['email'],
+                "role" => User::find($user['id'])->roles->toArray()[0]['display_name'],
+            ]);
+        };
+
+        return view('admin.user', [
+            'users' => $arr,
+        ]);
     }
 
     /**
@@ -25,7 +41,10 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        $pa = PembimbingAkademik::paginate(7);
+        return view('admin.user.add', [
+            'pa' => $pa,
+        ]);
     }
 
     /**
@@ -41,6 +60,15 @@ class MahasiswaController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->attachRole($request->role_id);
+        event(new Registered($user));
+        return redirect('/admin-user');
     }
 
     /**

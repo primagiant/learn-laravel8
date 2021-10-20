@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Main;
+use App\Models\Fakultas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
-class MahasiswaController extends Controller
+class FakultasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $fakultas = Fakultas::all();
+        return view('admin.fakultas', [
+            'fakultas' => $fakultas,
+        ]);
     }
 
     /**
@@ -25,7 +28,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        return view('admin.fakultas.add');
     }
 
     /**
@@ -36,22 +39,12 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        Fakultas::create([
+            'name' => Main::nameFormat($request->displayName),
+            'display_name' => $request->displayName,
+            'description' => $request->deskripsi,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('/admin-fakultas');
     }
 
     /**
@@ -62,7 +55,12 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fakultas = Fakultas::find($id);
+        return view('admin.fakultas.edit', [
+            'id' => $fakultas['id'],
+            'display_name' => $fakultas['display_name'],
+            'deskripsi' => $fakultas['description'],
+        ]);
     }
 
     /**
@@ -74,7 +72,12 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fakultas = Fakultas::find($id);
+        $fakultas->name = Main::nameFormat($request->display_name);
+        $fakultas->display_name = $request->display_name;
+        $fakultas->description = $request->description;
+        $fakultas->save();
+        return redirect('/admin-fakultas');
     }
 
     /**
@@ -85,6 +88,7 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Fakultas::destroy($id);
+        return back();
     }
 }

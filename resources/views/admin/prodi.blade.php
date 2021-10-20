@@ -32,11 +32,10 @@
                         <td class="py-4 px-6 border-b border-grey-light text-center">{{$item['description']}}</td>
                         <td
                             class="py-4 px-6 border-b border-grey-light text-center flex items-center justify-center gap-2">
-                            <form action="{{ route('delete-prodi') }}" method="post"
+                            <form action="{{ route('delete-prodi', ['id'=>$item['id']]) }}" method="post"
                                 onsubmit="return confirm('Apakah anda yakin menghapus akun ini ?')">
                                 @csrf
                                 @method('delete')
-                                <input type="hidden" class="invisible" value="{{$item['id']}}" name="id">
                                 <button type='submit' class="text-white px-2 py-1 bg-red-500 rounded-full text-xs">
                                     <i class="fas fa-trash"></i>
                                 </button>

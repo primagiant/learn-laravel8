@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PembimbingAkademik;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class MahasiswaController extends Controller
+class PembimbingAkademikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $pa = PembimbingAkademik::paginate(7);
+        return view('admin.pa', [
+            'pa' => $pa,
+        ]);
     }
 
     /**
@@ -25,7 +31,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        return view('admin.pa.add');
     }
 
     /**
@@ -41,6 +47,21 @@ class MahasiswaController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->attachRole('pa');
+        event(new Registered($user));
+
+        PembimbingAkademik::create([
+            'name' => $request->name,
+            'user_id' => $user['id'],
+        ]);
+
+        return redirect('/admin-pa');
     }
 
     /**
@@ -51,7 +72,10 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        $pa = PembimbingAkademik::find($id);
+        return view('admin.pa.detail', [
+            'pa' => $pa,
+        ]);
     }
 
     /**
