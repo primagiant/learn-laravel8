@@ -76,7 +76,7 @@ class DbSetupTables extends Migration
 
         // Membuat table Mahasiswa
         Schema::create('tb_mahasiswa', function (Blueprint $table) {
-            $table->integer('id')->unique();
+            $table->integer('nim')->unique();
             $table->unsignedBigInteger('prodi_id');
             $table->unsignedBigInteger('pa_id');
             $table->unsignedBigInteger('angkatan_id');
@@ -99,7 +99,7 @@ class DbSetupTables extends Migration
             $table->string('namafile');
             $table->timestamps();
 
-            $table->foreign('mahasiswa_id')->references('id')->on('tb_mahasiswa')
+            $table->foreign('mahasiswa_id')->references('nim')->on('tb_mahasiswa')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -111,7 +111,7 @@ class DbSetupTables extends Migration
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('mahasiswa_id')->references('id')->on('tb_mahasiswa')
+            $table->foreign('mahasiswa_id')->references('nim')->on('tb_mahasiswa')
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['mahasiswa_id', 'kegiatan_id']);

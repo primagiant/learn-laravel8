@@ -73,7 +73,7 @@ class PembimbingAkademikController extends Controller
     public function show($id)
     {
         $pa = PembimbingAkademik::find($id);
-        return view('admin.pa.detail', [
+        return view('pa.dashboard', [
             'pa' => $pa,
         ]);
     }

@@ -9,6 +9,7 @@ class Mahasiswa extends Model
 {
     use HasFactory;
     protected $table = 'tb_mahasiswa';
+    protected $primaryKey = 'nim';
     protected $guarded = [];
 
     public function angkatan()
@@ -28,6 +29,6 @@ class Mahasiswa extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->hasOne(User::class);
     }
 }

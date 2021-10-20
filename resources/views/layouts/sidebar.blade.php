@@ -47,11 +47,11 @@
 
         {{-- Pembimbing Akademik --}}
         @if (Auth::user()->hasRole('pa'))
-        <a href="{{ route('pa-mahasiswa') }}"
+        {{-- <a href="{{ route('/dashboard') }}"
             class="{{(request()->routeIs('pa-mahasiswa') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Mahasiswa
-        </a>
+        </a> --}}
         @endif
 
         {{-- Mahasiswa --}}

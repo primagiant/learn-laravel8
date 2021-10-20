@@ -13,6 +13,6 @@ class Angkatan extends Model
 
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class, 'angkatan_id', 'id');
+        return $this->hasMany(Mahasiswa::class, 'angkatan_id', 'nim');
     }
 }

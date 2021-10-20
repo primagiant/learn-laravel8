@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Angkatan;
+use App\Models\Mahasiswa;
+use App\Models\PembimbingAkademik;
+use App\Models\Prodi;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -15,7 +21,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        $mhs = Mahasiswa::all();
+        return view('admin.mahasiswa', [
+            'mahasiswa' => $mhs,
+        ]);
     }
 
     /**
@@ -25,7 +34,14 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.add');
+        $angkatan = Angkatan::all();
+        $prodi = Prodi::all();
+        $pa = PembimbingAkademik::all();
+        return view('admin.mahasiswa.add', [
+            'angkatan' => $angkatan,
+            'prodi' => $prodi,
+            'pa' => $pa,
+        ]);
     }
 
     /**
@@ -37,10 +53,30 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'nim' => ['required', 'numeric', 'unique:App\Models\Mahasiswa,nim'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->attachRole('mahasiswa');
+        event(new Registered($user));
+
+        Mahasiswa::create([
+            'nim' => $request->nim,
+            'nama' => $request->name,
+            'pa_id' => $request->pa,
+            'angkatan_id' => $request->angkatan,
+            'prodi_id' => $request->prodi,
+            'user_id' => $user['id'],
+        ]);
+
+        return redirect('/admin-mahasiswa');
     }
 
     /**
@@ -51,7 +87,13 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        $mhs = Mahasiswa::find($id);
+        return view('mahasiswa.dashboard', [
+            'mahasiswa' => $mhs,
+            'angkatan' => $mhs->angkatan->tahun,
+            'prodi' => $mhs->prodi,
+            'pa' => $mhs->pa,
+        ]);
     }
 
     /**

@@ -12,6 +12,9 @@
                     <tr class="bg-sidebar text-white">
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            NIM</th>
+                        <th
+                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Name</th>
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
@@ -19,14 +22,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($mahasiswa as $item)
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">Test</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $item['nim'] }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $item['nama'] }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">
                             <a onclick="return confirm('Apakah anda yakin menghapus akun ini ?')" href=""
                                 class="text-white px-2 py-1 bg-red-500 rounded-full text-xs">Hapus Mahasiswa
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
 
