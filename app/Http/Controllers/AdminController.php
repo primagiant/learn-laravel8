@@ -10,6 +10,7 @@ use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Helpers\Main;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 class AdminController extends Controller
@@ -43,7 +44,7 @@ class AdminController extends Controller
     // Kegiatan
     public function kegiatan()
     {
-        $jenis_kegiatan = JenisKegiatan::paginate(5);
+        $jenis_kegiatan = JenisKegiatan::paginate(8);
         return view('admin.kegiatan', [
             'jenis_kegiatan' => $jenis_kegiatan,
         ]);
@@ -65,11 +66,8 @@ class AdminController extends Controller
 
     public function saveFakultas(Request $req)
     {
-        $name = ucwords($req->displayName);
-        $name = str_replace(" ", "", $name);
-        $name = lcfirst($name);
         Fakultas::create([
-            'name' => $name,
+            'name' => Main::nameFormat($req->displayName),
             'display_name' => $req->displayName,
             'description' => $req->deskripsi,
         ]);
@@ -88,11 +86,8 @@ class AdminController extends Controller
 
     public function updateFakultas(Request $req)
     {
-        $name = ucwords($req->displayName);
-        $name = str_replace(" ", "", $name);
-        $name = lcfirst($name);
         $fakultas = Fakultas::find($req->id);
-        $fakultas->name = $name;
+        $fakultas->name = Main::nameFormat($req->display_name);
         $fakultas->display_name = $req->display_name;
         $fakultas->description = $req->description;
         $fakultas->save();
@@ -116,31 +111,41 @@ class AdminController extends Controller
 
     public function addProdi()
     {
-        return view('admin.prodi.add');
+        $fakultas = Fakultas::all();
+        return view('admin.prodi.add', [
+            'fakultas' => $fakultas,
+        ]);
     }
 
     public function saveProdi(Request $req)
     {
         Prodi::create([
-            'tahun' => $req->tahun,
+            'name' => Main::nameFormat($req->name),
+            'display_name' => $req->name,
+            'description' => $req->description,
+            'fakultas_id' => $req->fakultas,
         ]);
         return redirect('/admin-prodi');
     }
 
     public function editProdi(Request $req)
     {
-        $Prodi = Prodi::find($req->id);
+        $fakultas = Fakultas::all();
+        $prodi = Prodi::find($req->id);
         return view('admin.prodi.edit', [
-            'tahun' => $Prodi['tahun'],
-            'id' => $Prodi['id']
+            'prodi' => $prodi,
+            'fakultas' => $fakultas,
         ]);
     }
 
     public function updateProdi(Request $req)
     {
-        $Prodi = Prodi::find($req->id);
-        $Prodi->tahun = $req->tahun;
-        $Prodi->save();
+        $prodi = Prodi::find($req->id);
+        $prodi->name = Main::nameFormat($req->name);
+        $prodi->display_name = $req->name;
+        $prodi->description = $req->description;
+        $prodi->fakultas_id = $req->fakultas;
+        $prodi->save();
         return redirect('/admin-prodi');
     }
 

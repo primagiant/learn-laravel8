@@ -10,4 +10,9 @@ class Fakultas extends Model
     use HasFactory;
     protected $table = 'tb_fakultas';
     protected $guarded = [];
+
+    public function prodi()
+    {
+        return $this->hasMany(Prodi::class);
+    }
 }
