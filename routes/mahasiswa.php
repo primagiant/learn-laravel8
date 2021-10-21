@@ -5,10 +5,10 @@ use App\Http\Controllers\MahasiswaController;
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
     // Mahasiswa
-    Route::get('/detail-mahasiswa/{id}', [MahasiswaController::class, 'show'])
+    Route::get('/detail-mahasiswa', [MahasiswaController::class, 'show'])
         ->name('detail-mahasiswa');
 
-    Route::get('/edit-mahasiswa/{id}', [MahasiswaController::class, 'edit'])
+    Route::get('/edit-mahasiswa', [MahasiswaController::class, 'edit'])
         ->name('edit-mahasiswa');
 
     Route::put('/edit-mahasiswa/{id}', [MahasiswaController::class, 'update'])

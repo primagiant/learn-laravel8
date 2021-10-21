@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Angkatan;
 use App\Models\Mahasiswa;
 use App\Models\PembimbingAkademik;
+use App\Models\Portofolio;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -22,8 +24,18 @@ class MahasiswaController extends Controller
     public function index()
     {
         $mhs = Mahasiswa::all();
+        $mahasiswas = collect([]);
+        foreach ($mhs as $m) {
+            $mahasiswas->push([
+                'nim' => $m->nim,
+                'nama' => $m->nama,
+                'pa' => Mahasiswa::find($m->nim)->pa,
+                'angkatan' => Mahasiswa::find($m->nim)->angkatan,
+                'prodi' => Mahasiswa::find($m->nim)->prodi,
+            ]);
+        }
         return view('admin.mahasiswa', [
-            'mahasiswa' => $mhs,
+            'mahasiswa' => $mahasiswas,
         ]);
     }
 
@@ -85,9 +97,9 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $mhs = Mahasiswa::find($id);
+        $mhs = Mahasiswa::find(Auth::user()->mahasiswa->nim);
         return view('mahasiswa.dashboard', [
             'mahasiswa' => $mhs,
             'angkatan' => $mhs->angkatan->tahun,
@@ -104,7 +116,7 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('mahasiswa.editprofile');
     }
 
     /**

@@ -3,8 +3,10 @@
         {{__('Prodi')}}
     </x-slot>
     <div>
-        <a href="{{ route('add-prodi') }}" class="py-2 px-4 bg-sidebar text-white rounded-lg">Tambah
-            Prodi</a>
+        <a href="{{ route('add-prodi') }}" class="py-2 px-4 bg-sidebar hover:bg-blue-600 text-white rounded-lg">
+            <i class="fas fa-plus-circle mr-3"></i>
+            <span>Tambah</span>
+        </a>
         <div class="bg-white overflow-auto mt-3">
             <table class="text-left w-full border-collapse">
                 <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
@@ -19,6 +21,10 @@
                             Deskripsi
                         </th>
                         <th
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            Fakultas
+                        </th>
+                        <th
                             class="text-center w-64 py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Aksi
                         </th>
@@ -26,10 +32,12 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($prodi as $item)
+                    @foreach ($prodis as $item)
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light text-center">{{$item['display_name']}}</td>
-                        <td class="py-4 px-6 border-b border-grey-light text-center">{{$item['description']}}</td>
+                        <td class="py-4 px-6 border-b border-grey-light text-center">{{ $item['display_name'] }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light text-center">{{ $item['description'] }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light text-center">
+                            {{ $item['fakultas']->display_name}}</td>
                         <td
                             class="py-4 px-6 border-b border-grey-light text-center flex items-center justify-center gap-2">
                             <form action="{{ route('delete-prodi', ['id'=>$item['id']]) }}" method="post"

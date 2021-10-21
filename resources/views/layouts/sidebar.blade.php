@@ -10,6 +10,11 @@
             <i class="fas fa-tachometer-alt mr-3"></i>
             Dashboard
         </a>
+        <a href="{{ route('kegiatan') }}"
+            class="{{(request()->routeIs('kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+            <i class="fas fa-calendar mr-3"></i>
+            Kegiatan
+        </a>
 
         {{-- Admin --}}
         @if (Auth::user()->hasRole('admin'))
@@ -22,11 +27,6 @@
             class="{{(request()->routeIs('admin-pa') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-table mr-3"></i>
             Pembimbing Akademik
-        </a>
-        <a href="{{ route('admin-kegiatan') }}"
-            class="{{(request()->routeIs('admin-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
-            <i class="fas fa-calendar mr-3"></i>
-            Kegiatan
         </a>
         <a href="{{ route('admin-fakultas') }}"
             class="{{(request()->routeIs('admin-fakultas') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
@@ -56,8 +56,8 @@
 
         {{-- Mahasiswa --}}
         @if (Auth::user()->hasRole('mahasiswa'))
-        <a href="{{ route('mhs-portofolio') }}"
-            class="{{(request()->routeIs('mhs-portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
+        <a href="{{ route('portofolio', ['id' => Auth::user()->id]) }}"
+            class="{{(request()->routeIs('portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Portofolio
         </a>

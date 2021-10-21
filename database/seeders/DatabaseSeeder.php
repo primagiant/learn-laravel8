@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LaratrustSeeder::class);
         $this->call(UserSeed::class);
         $this->call(JenisKegiatanSeeder::class);
+        $this->call(RoleUpdateSeeder::class);
     }
 }

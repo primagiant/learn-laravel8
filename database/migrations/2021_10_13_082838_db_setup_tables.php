@@ -58,22 +58,6 @@ class DbSetupTables extends Migration
             $table->timestamps();
         });
 
-        // Membuat table Kegiatan
-        Schema::create('tb_kegiatan', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('prodi_id');
-            $table->unsignedBigInteger('jenis_kegiatan_id');
-            $table->string('nama_kegiatan');
-            $table->string('penyelenggara');
-            $table->integer('tahun');
-            $table->timestamps();
-
-            $table->foreign('prodi_id')->references('id')->on('tb_prodi')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('jenis_kegiatan_id')->references('id')->on('tb_jenis_kegiatan')
-                ->onUpdate('cascade')->onDelete('cascade');
-        });
-
         // Membuat table Mahasiswa
         Schema::create('tb_mahasiswa', function (Blueprint $table) {
             $table->integer('nim')->unique();
@@ -92,29 +76,23 @@ class DbSetupTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        // Membuat table Bukti
-        Schema::create('tb_bukti', function (Blueprint $table) {
+        // Membuat table Kegiatan
+        Schema::create('tb_portofolio', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('mahasiswa_id');
-            $table->string('namafile');
-            $table->timestamps();
-
-            $table->foreign('mahasiswa_id')->references('nim')->on('tb_mahasiswa')
-                ->onUpdate('cascade')->onDelete('cascade');
-        });
-
-        // Membuat table Portofolio
-        Schema::create('tb_portofolio', function (Blueprint $table) {
-            $table->integer('mahasiswa_id');
-            $table->unsignedBigInteger('kegiatan_id');
+            $table->unsignedBigInteger('jenis_kegiatan_id');
             $table->integer('valid_point');
-            $table->boolean('status');
+            $table->string('nama_kegiatan');
+            $table->string('penyelenggara');
+            $table->integer('tahun');
+            $table->string('bukti');
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
+            $table->foreign('jenis_kegiatan_id')->references('id')->on('tb_jenis_kegiatan')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('mahasiswa_id')->references('nim')->on('tb_mahasiswa')
                 ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary(['mahasiswa_id', 'kegiatan_id']);
         });
     }
 
@@ -130,9 +108,7 @@ class DbSetupTables extends Migration
         Schema::dropIfExists('tb_pa');
         Schema::dropIfExists('tb_angkatan');
         Schema::dropIfExists('tb_jenis_kegiatan');
-        Schema::dropIfExists('tb_kegiatan');
         Schema::dropIfExists('tb_mahasiswa');
-        Schema::dropIfExists('tb_bukti');
         Schema::dropIfExists('tb_portofolio');
     }
 }

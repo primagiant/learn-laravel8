@@ -4,8 +4,10 @@
     </x-slot>
 
     <div>
-        <a href="{{ route('add-fakultas') }}" class="py-2 px-4 bg-sidebar text-white rounded-lg">Tambah
-            Fakultas</a>
+        <a href="{{ route('add-fakultas') }}" class="py-2 px-4 bg-sidebar hover:bg-blue-600 text-white rounded-lg">
+            <i class="fas fa-plus-circle mr-2"></i>
+            <span>Tambah</span>
+        </a>
         <div class="bg-white overflow-auto mt-3">
             <table class="text-left w-full border-collapse">
                 <thead>

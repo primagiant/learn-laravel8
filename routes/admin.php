@@ -53,10 +53,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::delete('/delete-pa/{id}', [PembimbingAkademikController::class, 'destroy'])
         ->name('delete-pa');
 
-    // Kegiatan
-    Route::get('/admin-kegiatan', [KegiatanController::class, 'index'])
-        ->name('admin-kegiatan');
-
     // fakultas
     Route::get('/admin-fakultas', [FakultasController::class, 'index'])
         ->name('admin-fakultas');

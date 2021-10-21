@@ -31,4 +31,9 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function portofolio()
+    {
+        return $this->hasMany(Portofolio::class, 'mahasiswa_id', 'nim');
+    }
 }

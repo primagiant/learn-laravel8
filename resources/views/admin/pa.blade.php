@@ -4,8 +4,10 @@
     </x-slot>
 
     <div>
-        <a href="{{ route('add-pa') }}" class="py-2 px-4 bg-sidebar text-white rounded-lg">Tambah Pembimbing
-            Akademik</a>
+        <a href="{{ route('add-pa') }}" class="py-2 px-4 bg-sidebar hover:bg-blue-600 text-white rounded-lg">
+            <i class="fas fa-plus-circle mr-2"></i>
+            <span>Tambah</span>
+        </a>
         <div class="bg-white overflow-auto mt-3 lg:w-8/12">
             <table class="text-left w-full border-collapse">
                 <thead>
@@ -26,10 +28,18 @@
                                 $item['name']
                                 }}</a>
                         </td>
-                        <td class="py-4 px-6 border-b border-grey-light">
-                            <a onclick="return confirm('Apakah anda yakin menghapus akun ini ?')" href=""
-                                class="text-white px-2 py-1 bg-red-500 rounded-full text-xs">Hapus Pembimbing Akademik
-                            </a>
+                        <td class="py-4 px-6 border-b border-grey-light flex gap-2">
+                            <div>
+                                <a onclick="return confirm('Apakah anda yakin menghapus akun ini ?')" href=""
+                                    class="text-white py-2 px-2.5 bg-red-500 rounded-full text-xs">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="" class="text-white py-2 px-2.5 bg-yellow-500 rounded-full text-xs">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

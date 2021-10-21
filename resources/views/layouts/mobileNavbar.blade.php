@@ -14,14 +14,15 @@
             <i class="fas fa-tachometer-alt mr-3"></i>
             Dashboard
         </a>
-
-        {{-- Admin --}}
-        @if (Auth::user()->hasRole('admin'))
-        <a href="{{ route('admin-kegiatan') }}"
-            class="{{(request()->routeIs('admin-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
+        <a href="{{ route('kegiatan') }}"
+            class="{{(request()->routeIs('kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
             <i class="fas fa-calendar mr-3"></i>
             Kegiatan
         </a>
+
+        {{-- Admin --}}
+        @if (Auth::user()->hasRole('admin'))
+
         @endif
 
         {{-- Mahasiswa --}}

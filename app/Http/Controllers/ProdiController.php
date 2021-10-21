@@ -17,8 +17,17 @@ class ProdiController extends Controller
     public function index()
     {
         $prodi = Prodi::all();
+        $prodis = [];
+        foreach ($prodi as $p) {
+            array_push($prodis, [
+                'id' => $p->id,
+                'display_name' => $p->display_name,
+                'description' => $p->description,
+                'fakultas' => Prodi::find($p->id)->fakultas,
+            ]);
+        }
         return view('admin.prodi', [
-            'prodi' => $prodi,
+            'prodis' => $prodis,
         ]);
     }
 

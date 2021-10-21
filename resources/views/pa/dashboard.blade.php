@@ -6,7 +6,13 @@
         <div class="bg-white">
             <table class="w-full">
                 <tr class="border">
-                    <td class="p-6 text-lg font-bold">Data Profile</td>
+                    <td class="p-6 text-lg font-bold">
+                        <span>Data Profile</span>
+                    </td>
+                    <td></td>
+                    <td class="p-6 flex justify-end items-center">
+                        <a href=""><i class="fas fa-edit"></i></a>
+                    </td>
                 </tr>
                 <tr class="border">
                     <td class="p-4">Nama</td>

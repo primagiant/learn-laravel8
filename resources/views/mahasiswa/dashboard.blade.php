@@ -2,11 +2,13 @@
     <x-slot name="header">
         {{__('Profile')}} <strong>{{Auth::user()->name}}</strong>
     </x-slot>
-    <div class="grid md:grid-cols-2">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
         <div class="bg-white">
             <table class="w-full">
                 <tr class="border">
-                    <td class="p-6 text-lg font-bold">Data Profile</td>
+                    <td class="p-6 text-lg font-bold">
+                        <span>Data Profile</span>
+                    </td>
                 </tr>
                 <tr class="border">
                     <td class="p-4">NIM</td>
