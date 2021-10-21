@@ -6,6 +6,7 @@ use App\Models\PembimbingAkademik;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -67,12 +68,11 @@ class PembimbingAkademikController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $pa = PembimbingAkademik::find($id);
+        $pa = PembimbingAkademik::find(Auth::user()->pa->id);
         return view('pa.dashboard', [
             'pa' => $pa,
         ]);

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use PhpParser\Node\Stmt\Foreach_;
 
 class MahasiswaController extends Controller
 {
@@ -23,20 +24,27 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mhs = Mahasiswa::all();
-        $mahasiswas = collect([]);
-        foreach ($mhs as $m) {
-            $mahasiswas->push([
-                'nim' => $m->nim,
-                'nama' => $m->nama,
-                'pa' => Mahasiswa::find($m->nim)->pa,
-                'angkatan' => Mahasiswa::find($m->nim)->angkatan,
-                'prodi' => Mahasiswa::find($m->nim)->prodi,
+        if (Auth::user()->hasRole('admin')) {
+            $mhs = Mahasiswa::all();
+            $mahasiswas = collect([]);
+            foreach ($mhs as $m) {
+                $mahasiswas->push([
+                    'nim' => $m->nim,
+                    'nama' => $m->nama,
+                    'pa' => Mahasiswa::find($m->nim)->pa,
+                    'angkatan' => Mahasiswa::find($m->nim)->angkatan,
+                    'prodi' => Mahasiswa::find($m->nim)->prodi,
+                ]);
+            }
+            return view('admin.mahasiswa', [
+                'mahasiswa' => $mahasiswas,
+            ]);
+        } else if (Auth::user()->hasRole('pa')) {
+            $mhs = PembimbingAkademik::find(Auth::user()->pa->id)->mahasiswa;
+            return view('admin.mahasiswa', [
+                'mahasiswa' => $mhs,
             ]);
         }
-        return view('admin.mahasiswa', [
-            'mahasiswa' => $mahasiswas,
-        ]);
     }
 
     /**

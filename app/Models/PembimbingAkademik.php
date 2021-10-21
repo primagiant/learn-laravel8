@@ -18,6 +18,6 @@ class PembimbingAkademik extends Model
 
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class, 'pa_id', 'nim');
+        return $this->hasMany(Mahasiswa::class, 'pa_id', 'id');
     }
 }

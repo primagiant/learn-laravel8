@@ -47,11 +47,11 @@
 
         {{-- Pembimbing Akademik --}}
         @if (Auth::user()->hasRole('pa'))
-        {{-- <a href="{{ route('/dashboard') }}"
+        <a href="{{ route('pa-mahasiswa') }}"
             class="{{(request()->routeIs('pa-mahasiswa') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Mahasiswa
-        </a> --}}
+        </a>
         @endif
 
         {{-- Mahasiswa --}}
@@ -60,11 +60,6 @@
             class="{{(request()->routeIs('portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Portofolio
-        </a>
-        <a href="{{ route('mhs-kegiatan') }}"
-            class="{{(request()->routeIs('mhs-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
-            <i class="fas fa-calendar mr-3"></i>
-            Kegiatan
         </a>
         @endif
     </nav>
