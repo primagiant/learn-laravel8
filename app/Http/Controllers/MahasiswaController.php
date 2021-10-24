@@ -41,7 +41,7 @@ class MahasiswaController extends Controller
             ]);
         } else if (Auth::user()->hasRole('pa')) {
             $mhs = PembimbingAkademik::find(Auth::user()->pa->id)->mahasiswa;
-            return view('admin.mahasiswa', [
+            return view('pa.mahasiswa', [
                 'mahasiswa' => $mhs,
             ]);
         }
@@ -56,12 +56,19 @@ class MahasiswaController extends Controller
     {
         $angkatan = Angkatan::all();
         $prodi = Prodi::all();
-        $pa = PembimbingAkademik::all();
-        return view('admin.mahasiswa.add', [
-            'angkatan' => $angkatan,
-            'prodi' => $prodi,
-            'pa' => $pa,
-        ]);
+        if (Auth::user()->hasRole('admin')) {
+            $pa = PembimbingAkademik::all();
+            return view('admin.mahasiswa.add', [
+                'angkatan' => $angkatan,
+                'prodi' => $prodi,
+                'pa' => $pa,
+            ]);
+        } else if (Auth::user()->hasRole('pa')) {
+            return view('pa.mahasiswa.add', [
+                'angkatan' => $angkatan,
+                'prodi' => $prodi,
+            ]);
+        }
     }
 
     /**
@@ -79,6 +86,12 @@ class MahasiswaController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if (Auth::user()->hasRole('admin')) {
+            $pa = $request->pa;
+        } else if (Auth::user()->hasRole('pa')) {
+            $pa = Auth::user()->pa->id;
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -87,16 +100,21 @@ class MahasiswaController extends Controller
         $user->attachRole('mahasiswa');
         event(new Registered($user));
 
+
         Mahasiswa::create([
             'nim' => $request->nim,
             'nama' => $request->name,
-            'pa_id' => $request->pa,
+            'pa_id' => $pa,
             'angkatan_id' => $request->angkatan,
             'prodi_id' => $request->prodi,
             'user_id' => $user['id'],
         ]);
 
-        return redirect('/admin-mahasiswa');
+        if (Auth::user()->hasRole('admin')) {
+            return redirect('/admin-mahasiswa');
+        } else if (Auth::user()->hasRole('pa')) {
+            return redirect('/pa-mahasiswa');
+        }
     }
 
     /**

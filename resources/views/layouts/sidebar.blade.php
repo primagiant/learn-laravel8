@@ -56,7 +56,7 @@
 
         {{-- Mahasiswa --}}
         @if (Auth::user()->hasRole('mahasiswa'))
-        <a href="{{ route('portofolio', ['id' => Auth::user()->id]) }}"
+        <a href="{{ route('portofolio') }}"
             class="{{(request()->routeIs('portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Portofolio

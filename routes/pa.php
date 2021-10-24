@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\MahasiswaController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembimbingAkademikController;
+use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'role:pa']], function () {
     // Pembimbing akademik
@@ -19,9 +19,9 @@ Route::group(['middleware' => ['auth', 'role:pa']], function () {
     Route::get('/pa-mahasiswa', [MahasiswaController::class, 'index'])
         ->name('pa-mahasiswa');
 
-    Route::get('/add-mahasiswa', [MahasiswaController::class, 'create'])
-        ->name('add-mahasiswa');
+    Route::get('/pa-add-mahasiswa', [MahasiswaController::class, 'create'])
+        ->name('pa-add-mahasiswa');
 
-    Route::post('/add-mahasiswa', [MahasiswaController::class, 'store'])
-        ->name('add-mahasiswa');
+    Route::post('/pa-add-mahasiswa', [MahasiswaController::class, 'store'])
+        ->name('pa-add-mahasiswa');
 });

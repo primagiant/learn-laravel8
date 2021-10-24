@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PortofolioController;
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
     // Mahasiswa
@@ -15,10 +16,15 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
         ->name('edit-mahasiswa');
 
     // Portofolio
-    Route::get('/mhs-portofolio', [MahasiswaController::class, 'portofolio'])
-        ->name('mhs-portofolio');
+    Route::get('/portofolio', [PortofolioController::class, 'index'])
+        ->name('portofolio');
 
-    // Kegiatan
-    Route::get('/mhs-kegiatan', [MahasiswaController::class, 'kegiatan'])
-        ->name('mhs-kegiatan');
+    Route::get('/add-portofolio', [PortofolioController::class, 'create'])
+        ->name('add-portofolio');
+
+    Route::post('/add-portofolio', [PortofolioController::class, 'store'])
+        ->name('add-portofolio');
+
+    Route::delete('/delete-portofolio/{id}', [PortofolioController::class, 'destroy'])
+        ->name('delete-portofolio');
 });

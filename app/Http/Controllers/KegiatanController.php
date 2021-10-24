@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JenisKegiatan;
+use App\Models\KategoriKegiatan;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -14,9 +14,9 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        $jenis_kegiatan = JenisKegiatan::paginate(8);
+        $kategori_kegiatan = KategoriKegiatan::paginate(5);
         return view('admin.kegiatan', [
-            'jenis_kegiatan' => $jenis_kegiatan,
+            'kategori_kegiatan' => $kategori_kegiatan,
         ]);
     }
 

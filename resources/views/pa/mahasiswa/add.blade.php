@@ -61,32 +61,17 @@
                 </div>
             </div>
 
-            <div class="mt-4 grid md:grid-cols-2 gap-2">
-                {{-- Program Studi --}}
-                <div>
-                    <label class="text-sm" for="prodi">Program Studi</label>
-                    <div>
-                        <select name="prodi" id="prodi" class="rounded-lg w-full">
-                            @foreach ($prodi as $p)
-                            <option value="{{ $p['id'] }}">{{ $p['display_name'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
 
-                {{-- Pembimbing Akademik --}}
-                @if (Auth::user()->hasRole('admin'))
-                <div class="mt-4 md:mt-0">
-                    <label class="text-sm" for="pa">Pembimbing Akademik</label>
-                    <div>
-                        <select name="pa" id="pa" class="rounded-lg w-full">
-                            @foreach ($pa as $p)
-                            <option value="{{ $p['id'] }}">{{ $p['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            {{-- Program Studi --}}
+            <div>
+                <label class="text-sm" for="prodi">Program Studi</label>
+                <div>
+                    <select name="prodi" id="prodi" class="rounded-lg w-full">
+                        @foreach ($prodi as $p)
+                        <option value="{{ $p['id'] }}">{{ $p['display_name'] }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                @endif
             </div>
 
             {{-- Angkatan --}}

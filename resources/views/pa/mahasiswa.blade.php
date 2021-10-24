@@ -4,7 +4,7 @@
     </x-slot>
 
     <div>
-        <a href="{{ route('add-mahasiswa') }}" class="py-2 px-4 bg-sidebar hover:bg-blue-600 text-white rounded-lg">
+        <a href="{{ route('pa-add-mahasiswa') }}" class="py-2 px-4 bg-sidebar hover:bg-blue-600 text-white rounded-lg">
             <i class="fas fa-plus-circle mr-1.5"></i>
             <span>Tambah</span>
         </a>

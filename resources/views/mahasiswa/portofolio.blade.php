@@ -16,53 +16,53 @@
                 <thead>
                     <tr class="bg-sidebar text-white">
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                            #</th>
-                        <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Jenis Kegiatan</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Nama Kegiatan</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Penyelenggara</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Tahun</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Ref Point</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Valid Point</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-20">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-20">
                             Bukti</th>
                         <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-48">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-48">
                             Status</th>
+                        <th
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php $no = 1 @endphp
                     @foreach ($portofolio as $item)
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $no++ }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->jenis_kegiatan->nama }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->nama_kegiatan }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->penyelenggara }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->tahun }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->jenis_kegiatan->ref_point }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->valid_point }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">
+                        <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->jenis_kegiatan->nama }}
+                        </td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->nama_kegiatan }}</td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->penyelenggara }}</td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->tahun }}</td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->jenis_kegiatan->ref_point
+                            }}</td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->valid_point }}</td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">
                             <p class="hidden invisible">{{ $item->bukti }}</p>
                             <button
                                 class="openBukti bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-sm">
                                 Lihat
                             </button>
                         </td>
-                        <td class="py-4 px-6 border-b border-grey-light">
+                        <td class="text-center py-4 px-6 border-b border-grey-light">
                             @if ($item->status == 0)
                             <span class="bg-red-500 p-1.5 text-white rounded-lg text-sm">
                                 Belum Diverifikasi
@@ -70,6 +70,22 @@
                             @else
                             <span class="bg-green-500 p-1.5 text-white rounded-lg text-sm">Verified</span>
                             @endif
+                        </td>
+                        <td class="text-center py-4 px-6 border-b border-grey-light">
+                            <div class="bg-yellow-600 hover:bg-yellow-700 rounded-lg flex items-center justify-center">
+                                <a href="" class="py-2">
+                                    <i class="fas fa-pen text-white text-xs"></i>
+                                </a>
+                            </div>
+                            <form action="{{ route('delete-portofolio', ['id'=>$item->id]) }}" method="POST"
+                                onsubmit="return confirm('Apakah Anda yakin menghapus data ini ?')"
+                                class="mt-2 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="py-2">
+                                    <i class="fas fa-trash text-white text-xs"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -84,7 +100,7 @@
     {{-- Modals --}}
     <div id="imageModal" class="hidden fixed top-0 bottom-0 left-0 right-0 bg-gray-500 bg-opacity-80 z-10">
         <div class="pt-16 flex flex-col justify-center items-center">
-            <div class="flex justify-center items-center w-1/2">
+            <div class="flex justify-center items-center w-1/3">
                 <img id="modalImg" src="" alt="Bukti Image">
             </div>
             <button id="closeModal" class="mt-5 text-center w-full animate-bounce">
@@ -111,6 +127,11 @@
         });
 
         closeModal.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            modal.classList.remove('block');
+        })
+
+        modal.addEventListener('click', function() {
             modal.classList.add('hidden');
             modal.classList.remove('block');
         })

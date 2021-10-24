@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\FakultasController;
-use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PembimbingAkademikController;
 use App\Http\Controllers\ProdiController;

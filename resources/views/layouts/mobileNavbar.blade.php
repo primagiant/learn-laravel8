@@ -27,15 +27,10 @@
 
         {{-- Mahasiswa --}}
         @if (Auth::user()->hasRole('mahasiswa'))
-        <a href="{{ route('mhs-portofolio') }}"
-            class="{{(request()->routeIs('mhs-portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
+        <a href="{{ route('portofolio') }}"
+            class="{{(request()->routeIs('portofolio') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Portofolio
-        </a>
-        <a href="{{ route('mhs-kegiatan') }}"
-            class="{{(request()->routeIs('mhs-kegiatan') ? 'active-nav-link ' : 'opacity-75 hover:opacity-100 ')}}flex items-center text-white py-2 pl-4 nav-item">
-            <i class="fas fa-calendar mr-3"></i>
-            Kegiatan
         </a>
         @endif
 

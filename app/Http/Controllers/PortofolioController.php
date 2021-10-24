@@ -19,15 +19,12 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->hasRole('mahasiswa')) {
-            $mhs_id = User::find(Auth::user()->id)->mahasiswa->nim;
-            $mhs = Mahasiswa::find($mhs_id);
-            return view('mahasiswa.portofolio', [
-                'id' => $mhs->id,
-                'portofolio' => $mhs->portofolio()->paginate(5),
-            ]);
-        } else if (Auth::user()->hasRole('pa')) {
-        }
+        $mhs_id = User::find(Auth::user()->id)->mahasiswa->nim;
+        $mhs = Mahasiswa::find($mhs_id);
+        return view('mahasiswa.portofolio', [
+            'id' => $mhs->id,
+            'portofolio' => $mhs->portofolio()->paginate(5),
+        ]);
     }
 
     /**
@@ -71,7 +68,7 @@ class PortofolioController extends Controller
             'valid_point' => '0',
         ]);
 
-        return redirect("/portofolio/" . Auth::user()->id);
+        return redirect("/portofolio");
     }
 
     /**
@@ -98,6 +95,18 @@ class PortofolioController extends Controller
     }
 
     /**
+     * Validasi the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function validasi(Request $request, $id)
+    {
+        //
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -105,6 +114,7 @@ class PortofolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Portofolio::destroy($id);
+        return back();
     }
 }

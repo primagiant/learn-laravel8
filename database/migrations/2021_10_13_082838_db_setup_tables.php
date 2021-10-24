@@ -16,8 +16,7 @@ class DbSetupTables extends Migration
         // Membuat table fakultas
         Schema::create('tb_fakultas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->string('display_name')->nullable();
+            $table->string('display_name');
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -25,8 +24,7 @@ class DbSetupTables extends Migration
         // Membuat table Program Studi + ForeIgnkey ke Fakultas
         Schema::create('tb_prodi', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->string('display_name')->nullable();
+            $table->string('display_name');
             $table->string('description')->nullable();
             $table->unsignedBigInteger('fakultas_id');
             $table->timestamps();
@@ -50,12 +48,23 @@ class DbSetupTables extends Migration
             $table->timestamps();
         });
 
+        // Membuat table Kategori Kegiatan
+        Schema::create('tb_kategori_kegiatan', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nama');
+            $table->timestamps();
+        });
+
         // Membuat table Jenis Kegiatan
         Schema::create('tb_jenis_kegiatan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('kategori_kegiatan_id');
             $table->string('nama');
             $table->string('ref_point', 191);
             $table->timestamps();
+
+            $table->foreign('kategori_kegiatan_id')->references('id')->on('tb_kategori_kegiatan')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
 
         // Membuat table Mahasiswa
@@ -80,7 +89,7 @@ class DbSetupTables extends Migration
         Schema::create('tb_portofolio', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('mahasiswa_id');
-            $table->unsignedBigInteger('jenis_kegiatan_id');
+            $table->unsignedBigInteger('kategori_kegiatan_id');
             $table->integer('valid_point');
             $table->string('nama_kegiatan');
             $table->string('penyelenggara');
@@ -89,7 +98,7 @@ class DbSetupTables extends Migration
             $table->boolean('status')->default(0);
             $table->timestamps();
 
-            $table->foreign('jenis_kegiatan_id')->references('id')->on('tb_jenis_kegiatan')
+            $table->foreign('kategori_kegiatan_id')->references('id')->on('tb_kategori_kegiatan')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('mahasiswa_id')->references('nim')->on('tb_mahasiswa')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -107,6 +116,7 @@ class DbSetupTables extends Migration
         Schema::dropIfExists('tb_prodi');
         Schema::dropIfExists('tb_pa');
         Schema::dropIfExists('tb_angkatan');
+        Schema::dropIfExists('tb_kategori_kegiatan');
         Schema::dropIfExists('tb_jenis_kegiatan');
         Schema::dropIfExists('tb_mahasiswa');
         Schema::dropIfExists('tb_portofolio');

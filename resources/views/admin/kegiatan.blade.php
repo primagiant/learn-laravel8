@@ -1,36 +1,37 @@
+@php
+use App\Models\KategoriKegiatan;
+@endphp
 <x-app-layout>
     <x-slot name="header">
-        {{__('Kegiatan')}}
+        {{__('Kategori Kegiatan')}}
     </x-slot>
 
-    <div>
-        <div class="bg-white overflow-auto">
-            <table class="text-left w-full border-collapse">
-                <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
-                <thead>
-                    <tr class="bg-sidebar text-white">
-                        <th
-                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                            Jenis Kegiatan
-                        </th>
-                        <th
-                            class="w-64 py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                            Referency Point
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($jenis_kegiatan as $j)
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $j['nama'] }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $j['ref_point'] }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="py-3 bg-white px-3 rounded-b-lg">
-                {{$jenis_kegiatan->links()}}
+    <div class="border">
+        <div class="w-full bg-white overflow-auto">
+            @foreach ($kategori_kegiatan as $item)
+            <div x-data={show:false} class="rounded-sm">
+                <div class="border border-b-0 bg-white px-10 py-6" id="headingOne">
+                    <button @click="show=!show" class="underline text-blue-500 hover:text-blue-700 focus:outline-none"
+                        type="button">
+                        {{ $item->nama }}
+                    </button>
+                </div>
+                <div x-show="show" class="border border-b-0 px-10 py-6">
+                    <table class="border border-b-0 bg-white px-10 py-6 w-full">
+                        @foreach (KategoriKegiatan::find($item->id)->jenis_kegiatan as $jenis)
+                        <tr class="border">
+                            <td class="bg-white px-10 py-6">{{ $jenis->nama }}</td>
+                            <td class="bg-white px-10 py-6">{{ $jenis->ref_point}}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
+            @endforeach
+        </div>
+        <div class="bg-white py-5 px-10 border">
+            {{ $kategori_kegiatan->links() }}
         </div>
     </div>
+
 </x-app-layout>

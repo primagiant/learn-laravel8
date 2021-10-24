@@ -15,7 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LaratrustSeeder::class);
         $this->call(UserSeed::class);
+        $this->call(KategoriKegiatanSeeder::class);
         $this->call(JenisKegiatanSeeder::class);
+        $this->call(AngkatanSeeder::class);
+        $this->call(FakultasSeeder::class);
+        $this->call(ProdiSeeder::class);
         $this->call(RoleUpdateSeeder::class);
     }
 }
