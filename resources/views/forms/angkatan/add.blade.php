@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <form action="{{ route('add-angkatan') }}" method="POST" class="p-8bg-gray-50 rounded-lg shadow">
+        <form action="{{ route('add-angkatan') }}" method="POST" class="p-8 bg-gray-50 rounded-lg shadow">
             @csrf
             <div>
                 <label class="text-sm" for="tahunAngkatan">Tahun Angkatan</label>
