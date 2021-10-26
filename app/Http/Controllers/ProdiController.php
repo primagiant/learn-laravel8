@@ -38,7 +38,7 @@ class ProdiController extends Controller
     public function create()
     {
         $fakultas = Fakultas::all();
-        return view('admin.prodi.add', [
+        return view('forms.prodi.add', [
             'fakultas' => $fakultas,
         ]);
     }
@@ -69,7 +69,7 @@ class ProdiController extends Controller
     {
         $fakultas = Fakultas::all();
         $prodi = Prodi::find($id);
-        return view('admin.prodi.edit', [
+        return view('forms.prodi.edit', [
             'prodi' => $prodi,
             'fakultas' => $fakultas,
         ]);
