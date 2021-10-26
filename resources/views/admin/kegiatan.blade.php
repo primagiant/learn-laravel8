@@ -7,12 +7,11 @@ use App\Models\KategoriKegiatan;
     </x-slot>
 
     <div class="border">
-        <div class="w-full bg-white overflow-auto">
+        <div class="w-full bg-gray-50 overflow-auto">
             @foreach ($kategori_kegiatan as $item)
             <div x-data={show:false} class="rounded-sm">
                 <div class="border border-b-0 bg-white px-10 py-6" id="headingOne">
-                    <button @click="show=!show" class="underline text-blue-500 hover:text-blue-700 focus:outline-none"
-                        type="button">
+                    <button @click="show=!show" class="hover:text-blue-500 hover:underline" type="button">
                         {{ $item->nama }}
                     </button>
                 </div>

@@ -32,7 +32,7 @@ class PembimbingAkademikController extends Controller
      */
     public function create()
     {
-        return view('admin.pa.add');
+        return view('forms.pa.add');
     }
 
     /**
@@ -109,6 +109,8 @@ class PembimbingAkademikController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy(PembimbingAkademik::find($id)->user_id);
+        PembimbingAkademik::destroy($id);
+        return back();
     }
 }

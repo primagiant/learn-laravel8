@@ -4,8 +4,8 @@
     </x-slot>
     <div>
         <div class="mb-3">
-            <a href="{{ route('add-portofolio', ['id'=>$id]) }}"
-                class="bg-sidebar hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-md">
+            <a href="{{ route('add-portofolio') }}"
+                class="bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-md">
                 <i class="fas fa-plus mr-2"></i>
                 <span>Tambah</span>
             </a>
@@ -58,7 +58,7 @@
                         <td class="text-center py-4 px-6 border-b border-grey-light">
                             <p class="hidden invisible">{{ $item->bukti }}</p>
                             <button
-                                class="openBukti bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-sm">
+                                class="openBukti bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-sm">
                                 Lihat
                             </button>
                         </td>
@@ -72,17 +72,17 @@
                             @endif
                         </td>
                         <td class="text-center py-4 px-6 border-b border-grey-light">
-                            <div class="bg-yellow-600 hover:bg-yellow-700 rounded-lg flex items-center justify-center">
-                                <a href="" class="py-2">
+                            <div class=" flex items-center justify-center">
+                                <a href="{{ route('edit-portofolio', ['id'=>$item->id]) }}"
+                                    class="py-2 px-4 bg-yellow-600 hover:bg-yellow-700 rounded-lg">
                                     <i class="fas fa-pen text-white text-xs"></i>
                                 </a>
                             </div>
                             <form action="{{ route('delete-portofolio', ['id'=>$item->id]) }}" method="POST"
-                                onsubmit="return confirm('Apakah Anda yakin menghapus data ini ?')"
-                                class="mt-2 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center">
+                                onsubmit="return confirm('Apakah Anda yakin menghapus data ini ?')" class="mt-2">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="py-2">
+                                <button type="submit" class="py-2 px-4 bg-red-600 hover:bg-red-700 rounded-lg">
                                     <i class="fas fa-trash text-white text-xs"></i>
                                 </button>
                             </form>

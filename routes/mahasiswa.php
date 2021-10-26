@@ -25,6 +25,12 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
     Route::post('/add-portofolio', [PortofolioController::class, 'store'])
         ->name('add-portofolio');
 
+    Route::get('/edit-portofolio/{id}', [PortofolioController::class, 'edit'])
+        ->name('edit-portofolio');
+
+    Route::put('/edit-portofolio/{id}', [PortofolioController::class, 'update'])
+        ->name('edit-portofolio');
+
     Route::delete('/delete-portofolio/{id}', [PortofolioController::class, 'destroy'])
         ->name('delete-portofolio');
 });

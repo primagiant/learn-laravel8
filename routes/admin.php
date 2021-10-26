@@ -40,9 +40,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('/add-pa', [PembimbingAkademikController::class, 'store'])
         ->name('add-pa');
 
-    Route::get('/detail-pa/{id}', [PembimbingAkademikController::class, 'show'])
-        ->name('detail-pa');
-
     Route::get('/edit-pa/{id}', [PembimbingAkademikController::class, 'edit'])
         ->name('edit-pa');
 

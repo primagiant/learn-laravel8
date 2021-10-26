@@ -4,7 +4,7 @@
     </x-slot>
 
     <div>
-        <a href="{{ route('add-pa') }}" class="py-2 px-4 bg-sidebar hover:bg-blue-600 text-white rounded-lg">
+        <a href="{{ route('add-pa') }}" class="py-2 px-4 bg-sidebar hover:bg-gray-600 text-white rounded-lg">
             <i class="fas fa-plus-circle mr-2"></i>
             <span>Tambah</span>
         </a>
@@ -23,11 +23,7 @@
                 <tbody>
                     @foreach ($pa as $item)
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">
-                            <a class="hover:underline" href="{{ route('detail-pa', ['id'=>$item['id']]) }}">{{
-                                $item['name']
-                                }}</a>
-                        </td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{$item['name']}}</td>
                         <td class="py-4 px-6 border-b border-grey-light flex gap-2">
                             <div>
                                 <a onclick="return confirm('Apakah anda yakin menghapus akun ini ?')" href=""
@@ -36,8 +32,9 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="" class="text-white py-2 px-2.5 bg-yellow-500 rounded-full text-xs">
-                                    <i class="fas fa-pen"></i>
+                                <a href="" onclick="return confirm('Apakah anda yakin Mengedit akun ini ?')"
+                                    class="text-white py-2 px-2.5 bg-yellow-500 rounded-full text-xs">
+                                    <i class="fas fa-edit"></i>
                                 </a>
                             </div>
                         </td>

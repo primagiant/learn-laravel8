@@ -27,7 +27,7 @@ class AngkatanController extends Controller
      */
     public function create()
     {
-        return view('admin.angkatan.add');
+        return view('forms.angkatan.add');
     }
 
     /**
@@ -53,7 +53,7 @@ class AngkatanController extends Controller
     public function edit($id)
     {
         $angkatan = Angkatan::find($id);
-        return view('admin.angkatan.edit', [
+        return view('forms.angkatan.edit', [
             'tahun' => $angkatan['tahun'],
             'id' => $angkatan['id']
         ]);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Main;
 use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -53,7 +52,6 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         Prodi::create([
-            'name' => Main::nameFormat($request->name),
             'display_name' => $request->name,
             'description' => $request->description,
             'fakultas_id' => $request->fakultas,
@@ -87,7 +85,6 @@ class ProdiController extends Controller
     public function update(Request $request, $id)
     {
         $prodi = Prodi::find($id);
-        $prodi->name = Main::nameFormat($request->name);
         $prodi->display_name = $request->name;
         $prodi->description = $request->description;
         $prodi->fakultas_id = $request->fakultas;

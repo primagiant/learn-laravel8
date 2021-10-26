@@ -11,6 +11,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                quick: ["'Quicksand', sans-serif", ...defaultTheme.fontFamily.sans],
             },
         },
     },

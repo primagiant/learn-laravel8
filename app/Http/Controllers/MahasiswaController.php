@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Angkatan;
 use App\Models\Mahasiswa;
 use App\Models\PembimbingAkademik;
-use App\Models\Portofolio;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -13,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use PhpParser\Node\Stmt\Foreach_;
 
 class MahasiswaController extends Controller
 {
@@ -25,19 +23,9 @@ class MahasiswaController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('admin')) {
-            $mhs = Mahasiswa::all();
-            $mahasiswas = collect([]);
-            foreach ($mhs as $m) {
-                $mahasiswas->push([
-                    'nim' => $m->nim,
-                    'nama' => $m->nama,
-                    'pa' => Mahasiswa::find($m->nim)->pa,
-                    'angkatan' => Mahasiswa::find($m->nim)->angkatan,
-                    'prodi' => Mahasiswa::find($m->nim)->prodi,
-                ]);
-            }
+            $mhs = Mahasiswa::paginate(7);
             return view('admin.mahasiswa', [
-                'mahasiswa' => $mahasiswas,
+                'mahasiswa' => $mhs,
             ]);
         } else if (Auth::user()->hasRole('pa')) {
             $mhs = PembimbingAkademik::find(Auth::user()->pa->id)->mahasiswa;
@@ -58,13 +46,13 @@ class MahasiswaController extends Controller
         $prodi = Prodi::all();
         if (Auth::user()->hasRole('admin')) {
             $pa = PembimbingAkademik::all();
-            return view('admin.mahasiswa.add', [
+            return view('forms.mahasiswa.add', [
                 'angkatan' => $angkatan,
                 'prodi' => $prodi,
                 'pa' => $pa,
             ]);
         } else if (Auth::user()->hasRole('pa')) {
-            return view('pa.mahasiswa.add', [
+            return view('forms.mahasiswa.add', [
                 'angkatan' => $angkatan,
                 'prodi' => $prodi,
             ]);
@@ -142,7 +130,7 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        return view('mahasiswa.editprofile');
+        return view('forms.mahasiswa.edit');
     }
 
     /**
@@ -165,6 +153,8 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy(Mahasiswa::find($id)->user_id);
+        Mahasiswa::destroy($id);
+        return back();
     }
 }

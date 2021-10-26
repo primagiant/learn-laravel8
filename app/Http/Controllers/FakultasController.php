@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Main;
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
 
@@ -28,7 +27,7 @@ class FakultasController extends Controller
      */
     public function create()
     {
-        return view('admin.fakultas.add');
+        return view('forms.fakultas.add');
     }
 
     /**
@@ -39,8 +38,12 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'displayName' => ['required', 'max:255'],
+            'deskripsi' => ['required', 'max:255'],
+        ]);
+
         Fakultas::create([
-            'name' => Main::nameFormat($request->displayName),
             'display_name' => $request->displayName,
             'description' => $request->deskripsi,
         ]);
@@ -56,7 +59,7 @@ class FakultasController extends Controller
     public function edit($id)
     {
         $fakultas = Fakultas::find($id);
-        return view('admin.fakultas.edit', [
+        return view('forms.fakultas.edit', [
             'id' => $fakultas['id'],
             'display_name' => $fakultas['display_name'],
             'deskripsi' => $fakultas['description'],
@@ -72,8 +75,12 @@ class FakultasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'displayName' => ['required', 'max:255'],
+            'deskripsi' => ['required', 'max:255'],
+        ]);
+
         $fakultas = Fakultas::find($id);
-        $fakultas->name = Main::nameFormat($request->display_name);
         $fakultas->display_name = $request->display_name;
         $fakultas->description = $request->description;
         $fakultas->save();

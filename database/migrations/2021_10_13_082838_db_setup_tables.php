@@ -89,7 +89,7 @@ class DbSetupTables extends Migration
         Schema::create('tb_portofolio', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('mahasiswa_id');
-            $table->unsignedBigInteger('kategori_kegiatan_id');
+            $table->unsignedBigInteger('jenis_kegiatan_id');
             $table->integer('valid_point');
             $table->string('nama_kegiatan');
             $table->string('penyelenggara');
@@ -98,7 +98,7 @@ class DbSetupTables extends Migration
             $table->boolean('status')->default(0);
             $table->timestamps();
 
-            $table->foreign('kategori_kegiatan_id')->references('id')->on('tb_kategori_kegiatan')
+            $table->foreign('jenis_kegiatan_id')->references('id')->on('tb_jenis_kegiatan')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('mahasiswa_id')->references('nim')->on('tb_mahasiswa')
                 ->onUpdate('cascade')->onDelete('cascade');

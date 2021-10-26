@@ -4,16 +4,17 @@
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <form action="{{ route('add-angkatan') }}" method="POST" class="p-10 bg-white rounded shadow-xl">
+        <form action="{{ route('add-angkatan') }}" method="POST" class="p-8bg-gray-50 rounded-lg shadow">
             @csrf
             <div>
                 <label class="text-sm" for="tahunAngkatan">Tahun Angkatan</label>
                 <div>
-                    <input type="text" class="rounded-lg w-full" id="tahunAngkatan" name="tahun" autofocus>
+                    <input type="text" class="rounded-lg w-full border-gray-300" id="tahunAngkatan" name="tahun"
+                        autofocus>
                 </div>
             </div>
-            <div class="mt-3">
-                <button type='submit' class="text-white px-2 py-1 bg-sidebar rounded-lg text-sm">
+            <div class="mt-4">
+                <button type='submit' class="text-white px-4 py-2 bg-sidebar rounded-lg text-sm">
                     Save
                 </button>
             </div>

@@ -10,7 +10,6 @@
         </a>
         <div class="bg-white overflow-auto mt-3">
             <table class="text-left w-full border-collapse">
-                <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                 <thead>
                     <tr class="bg-sidebar text-white">
                         <th
@@ -41,11 +40,28 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ $item['angkatan']->tahun }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $item['prodi']->display_name }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $item['pa']->name }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">
-                            <a onclick="return confirm('Apakah anda yakin menghapus akun ini ?')" href=""
-                                class="text-white px-2 py-1.5 bg-red-500 rounded-full text-xs">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                        <td class="py-4 px-6 border-b border-grey-light flex gap-1.5">
+                            {{-- <form action="{{ route('pa-delete-mahasiswa', ['id'=>$item->nim]) }}" method="POST"
+                                class="inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" onclick="return confirm('Apakah anda yakin menghapus akun ini ?')"
+                                    class="text-white px-2 py-1.5 bg-red-500 hover:bg-red-600 rounded-full text-xs">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                            <div>
+                                <a href=""
+                                    class="text-white px-2 py-1.5 bg-yellow-500 hover:bg-yellow-600 rounded-full text-xs">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div> --}}
+                            <div>
+                                <a href="{{ route('show-mahasiswa-portofolio', ['id'=>$item->nim]) }}"
+                                    class="text-white px-2 py-1.5 bg-green-500 hover:bg-green-600 rounded-full text-xs">
+                                    <i class="fas fa-address-book"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
