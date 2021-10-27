@@ -25,6 +25,7 @@ use App\Models\KategoriKegiatan;
 
     <div class="border">
         <div class="w-full bg-gray-50 overflow-auto">
+            @if (!$kategori_kegiatan->isEmpty())
             @foreach ($kategori_kegiatan as $item)
             <div x-data={show:false} class="rounded-sm">
                 <div class="border border-b-0 bg-white px-10 py-6" id="headingOne">
@@ -44,10 +45,17 @@ use App\Models\KategoriKegiatan;
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="bg-white py-5 px-10 border">
+                Data Kegiatan Tidak ada
+            </div>
+            @endif
         </div>
+        @if (!$kategori_kegiatan->isEmpty())
         <div class="bg-white py-5 px-10 border">
             {{ $kategori_kegiatan->links() }}
         </div>
+        @else @endif
     </div>
 
 </x-app-layout>

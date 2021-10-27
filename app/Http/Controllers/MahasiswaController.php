@@ -28,9 +28,17 @@ class MahasiswaController extends Controller
                 'mahasiswa' => $mhs,
             ]);
         } else if (Auth::user()->hasRole('pa')) {
-            $mhs = PembimbingAkademik::find(Auth::user()->pa->id)->mahasiswa;
+            if (request('keyword') != null) {
+                $mhs =  Mahasiswa::where('pa_id', '=', Auth::user()->pa->id)
+                    ->where('nim', 'like', '%' . request('keyword') . '%')
+                    ->orWhere('nama', 'like', '%' . request('keyword') . '%')
+                    ->get();
+            } else {
+                $mhs = PembimbingAkademik::find(Auth::user()->pa->id)->mahasiswa;
+            }
             return view('pa.mahasiswa', [
                 'mahasiswa' => $mhs,
+                'keyword' => request('keyword'),
             ]);
         }
     }
