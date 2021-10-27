@@ -27,6 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (!$fakultas->isEmpty())
                     @foreach ($fakultas as $item)
                     <tr class="hover:bg-grey-lighter">
                         <td class="py-4 px-6 border-b border-grey-light text-center">{{$item['display_name']}}</td>
@@ -48,6 +49,13 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td colspan="8" class="text-center py-4 px-6 border-b border-grey-light">
+                            Tidak ada Data Fakultas
+                        </td>
+                    </tr>
+                    @endif
 
                 </tbody>
             </table>

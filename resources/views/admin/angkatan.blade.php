@@ -24,6 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (!$angkatan->isEmpty())
                     @foreach ($angkatan as $item)
                     <tr class="hover:bg-grey-lighter">
                         <td class="py-4 px-6 border-b border-grey-light text-center">{{$item['tahun']}}</td>
@@ -44,6 +45,13 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td colspan="8" class="text-center py-4 px-6 border-b border-grey-light">
+                            Tidak ada Data Angakatan
+                        </td>
+                    </tr>
+                    @endif
 
                 </tbody>
             </table>
