@@ -92,23 +92,6 @@ class PortofolioController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function validasi($id)
-    {
-        $portofolio = Portofolio::find($id);
-        $kategori_kegiatan = KategoriKegiatan::all();
-        return view('forms.portofolio.validasi', [
-            'id' => $id,
-            'kategori_kegiatan' => $kategori_kegiatan,
-            'portofolio' => $portofolio,
-        ]);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -174,14 +157,36 @@ class PortofolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
         $mahasiswa = Mahasiswa::find($id);
         $name = $mahasiswa->nama;
-        $mahasiswa = $mahasiswa->portofolio;
+        if (request('key') != null) {
+            $mahasiswa = $mahasiswa->portofolio->where('status', '=', request('key'));
+        } else {
+            $mahasiswa = $mahasiswa->portofolio;
+        }
         return view('pa.portofolio_mahasiswa', [
+            'id' => $id,
             'mahasiswa_name' => $name,
             'portofolio' => $mahasiswa,
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function validasi($id)
+    {
+        $portofolio = Portofolio::find($id);
+        $kategori_kegiatan = KategoriKegiatan::all();
+        return view('forms.portofolio.validasi', [
+            'id' => $id,
+            'kategori_kegiatan' => $kategori_kegiatan,
+            'portofolio' => $portofolio,
         ]);
     }
 

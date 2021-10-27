@@ -1,15 +1,27 @@
 <x-app-layout>
     <x-slot name="header">
-        {{__('Portofolio ')}} <strong>
-            {{$mahasiswa_name}}
-        </strong>
+        <span>
+            {{__('Portofolio ')}} <strong>
+                {{$mahasiswa_name}}
+            </strong>
+        </span>
     </x-slot>
     <div>
         <div class="mb-3">
-            <a href="{{ route('add-portofolio') }}"
-                class="bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-md">
+            <a href="{{ route('show-mahasiswa-portofolio', ['id'=>$id, 'key' => null]) }}"
+                class="mr-1.5 bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-md">
                 <i class="fas fa-plus mr-2"></i>
-                <span>Tambah</span>
+                <span>All</span>
+            </a>
+            <a href="{{ route('show-mahasiswa-portofolio', ['id'=>$id, 'key' => '1']) }}"
+                class="mr-1.5 bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-md">
+                <i class="fas fa-check mr-2"></i>
+                <span>Verified</span>
+            </a>
+            <a href="{{ route('show-mahasiswa-portofolio', ['id'=>$id,'key' => 0]) }}"
+                class="mr-1.5 bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-md">
+                <i class="fas fa-times-circle mr-2"></i>
+                <span>Unverified</span>
             </a>
         </div>
         <div class="bg-white overflow-auto">
@@ -39,14 +51,12 @@
                             class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-20">
                             Bukti</th>
                         <th
-                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-48">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-52">
                             Status</th>
-                        <th
-                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                            Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @if (!$portofolio->isEmpty())
                     @foreach ($portofolio as $item)
                     <tr class="hover:bg-grey-lighter">
                         <td class="text-center py-4 px-6 border-b border-grey-light">{{ $item->jenis_kegiatan->nama }}
@@ -61,32 +71,39 @@
                             <p class="hidden invisible">{{ $item->bukti }}</p>
                             <button
                                 class="openBukti bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-sm">
+                                <i class="fas fa-eye"></i>
                                 Lihat
                             </button>
                         </td>
                         <td class="text-center py-4 px-6 border-b border-grey-light">
                             @if ($item->status == 0)
                             <span class="bg-red-500 p-1.5 text-white rounded-lg text-sm">
+                                <i class="fas fa-times-circle"></i>
                                 Belum Diverifikasi
                             </span>
-                            @else
-                            <span class="bg-green-500 p-1.5 text-white rounded-lg text-sm">Verified</span>
-                            @endif
-                        </td>
-                        <td class="text-center py-4 px-6 border-b border-grey-light">
-                            {{-- <div class=" flex items-center justify-center">
-                                <a href="{{ route('edit-portofolio', ['id'=>$item->id]) }}"
-                                    class="py-2 px-4 bg-yellow-600 hover:bg-yellow-700 rounded-lg">
-                                    <i class="fas fa-pen text-white text-xs"></i>
+                            <div class="mt-1.5">
+                                <a href="{{ route('pa-validasi', ['id'=> $item->id]) }}"
+                                    class="py-1.5 px-2.5 bg-green-600 hover:bg-green-700 rounded-lg text-sm text-white">
+                                    <i class="fas fa-pen-nib"></i>
+                                    Validasi
                                 </a>
-                            </div> --}}
-                            <a href="{{ route('pa-validasi', ['id'=> $item->id]) }}"
-                                class="py-1.5 px-2.5 bg-green-600 hover:bg-green-700 rounded-lg text-sm text-white">
-                                Validasi
-                            </a>
+                            </div>
+                            @else
+                            <span class="bg-green-600 p-1.5 text-white rounded-lg text-sm">
+                                <i class="fas fa-check"></i>
+                                Verified
+                            </span>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td colspan="8" class="text-center py-4 px-6 border-b border-grey-light">
+                            Tidak ada Data Portofolio
+                        </td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
