@@ -38,6 +38,9 @@ class AngkatanController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tahun' => ['required', 'numeric', 'digits:4', 'unique:tb_angkatan,tahun'],
+        ]);
         Angkatan::create([
             'tahun' => $request->tahun,
         ]);

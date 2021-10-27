@@ -10,7 +10,10 @@
                 <label class="text-sm" for="tahunAngkatan">Tahun Angkatan</label>
                 <div>
                     <input type="text" class="rounded-lg w-full border-gray-300" id="tahunAngkatan" name="tahun"
-                        autofocus>
+                        autofocus value="{{old('tahun')}}">
+                    @error('tahun')
+                    <p class="text-red-500 text-sm mt-2">{{$message}}</p>
+                    @enderror
                 </div>
             </div>
             <div class="mt-4">

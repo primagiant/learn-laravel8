@@ -10,7 +10,8 @@ use App\Models\KategoriKegiatan;
                     <i class="fas fa-search text-sm mx-1.5"></i>
                 </button>
                 <input type="text" name="keyword" autocomplete="none"
-                    class="outiline-none border-none focus:ring-0 w-72" value="{{$keyword}}" autofocus>
+                    class="outiline-none border-none focus:ring-0 w-72" value="{{$keyword}}" autofocus
+                    placeholder="Cari Kategori">
             </form>
             <form action="" method="GET" class="flex justify-end">
                 <input type="hidden" name="keyword" value="">

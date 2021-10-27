@@ -15,7 +15,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $kategori_kegiatan = KategoriKegiatan::where('nama', 'like', '%' . request('keyword') . "%")->paginate(5);
-        return view('admin.kegiatan', [
+        return view('kegiatan', [
             'keyword' => request('keyword'),
             'kategori_kegiatan' => $kategori_kegiatan,
         ]);
