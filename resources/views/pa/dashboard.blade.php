@@ -1,6 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        {{__('Profile')}} <strong>{{Auth::user()->name}}</strong>
+        <span>
+            {{__('Profile')}} <strong>{{Auth::user()->name}}</strong>
+        </span>
     </x-slot>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="flex shadow rounded-lg">

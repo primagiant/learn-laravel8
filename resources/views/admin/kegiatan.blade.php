@@ -4,18 +4,19 @@ use App\Models\KategoriKegiatan;
 <x-app-layout>
     <x-slot name="header">
         {{__('Kategori Kegiatan')}}
-        <div class="flex justify-end mt-3">
-            <form action="" method="GET" class="flex justify-end shadow rounded-full">
-                <input type="text" name="keyword" autocomplete="none"
-                    class="rounded-l-full border-none pl-4 focus:ring-0 w-72" value="{{$keyword}}" autofocus>
-                <button class="flex items-center justify-center bg-sidebar text-white px-3 rounded-r-full">
-                    <i class="fas fa-search text-xl"></i>
+        <div class="flex justify-end mt-3 bg-gray-100 border shadow rounded-xl">
+            <form action="" method="GET" class="flex justify-end rounded-full">
+                <button class="flex items-center justify-center px-2.5">
+                    <i class="fas fa-search text-sm mx-1.5"></i>
                 </button>
+                <input type="text" name="keyword" autocomplete="none"
+                    class="outiline-none border-none focus:ring-0 w-72" value="{{$keyword}}" autofocus>
             </form>
             <form action="" method="GET" class="flex justify-end">
                 <input type="hidden" name="keyword" value="">
-                <button class="flex items-center justify-center bg-red-300 text-white px-3 rounded-xl ml-3 shadow">
-                    <i class="fas fa-backspace text-sm mx-1.5"></i>
+                <button
+                    class="transition duration-300 flex items-center justify-center px-2.5 hover:bg-red-600 rounded-r-xl hover:text-white">
+                    <i class="fas fa-times-circle text-xs mx-1"></i>
                 </button>
             </form>
         </div>

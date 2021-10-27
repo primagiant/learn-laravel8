@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{__("Tambah Data Pembimbing Akademik") }}
+        {{__("Edit Data Pembimbing Akademik") }}
     </x-slot>
 
     <div class="lg:w-8/12">

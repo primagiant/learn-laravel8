@@ -37,7 +37,7 @@
                             class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-20">
                             Bukti</th>
                         <th
-                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-48">
+                            class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light w-52">
                             Status</th>
                         <th
                             class="text-center py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
@@ -59,16 +59,21 @@
                             <p class="hidden invisible">{{ $item->bukti }}</p>
                             <button
                                 class="openBukti bg-sidebar hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-sm">
+                                <i class="fas fa-eye"></i>
                                 Lihat
                             </button>
                         </td>
                         <td class="text-center py-4 px-6 border-b border-grey-light">
                             @if ($item->status == 0)
                             <span class="bg-red-500 p-1.5 text-white rounded-lg text-sm">
+                                <i class="fas fa-times-circle"></i>
                                 Belum Diverifikasi
                             </span>
                             @else
-                            <span class="bg-green-500 p-1.5 text-white rounded-lg text-sm">Verified</span>
+                            <span class="bg-green-500 p-1.5 text-white rounded-lg text-sm">
+                                <i class="fas fa-check-circle"></i>
+                                Verified
+                            </span>
                             @endif
                         </td>
                         <td class="text-center py-4 px-6 border-b border-grey-light">

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{__("Tambah Data Prodi") }}
+        {{__("Edit Data Prodi") }}
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2">

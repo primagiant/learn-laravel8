@@ -114,11 +114,17 @@ class MahasiswaController extends Controller
     public function show()
     {
         $mhs = Mahasiswa::find(Auth::user()->mahasiswa->nim);
+        // Mecari Point
+        $point = 0;
+        foreach ($mhs->portofolio as $p) {
+            $point += $p->valid_point;
+        }
         return view('mahasiswa.dashboard', [
             'mahasiswa' => $mhs,
             'angkatan' => $mhs->angkatan->tahun,
             'prodi' => $mhs->prodi,
             'pa' => $mhs->pa,
+            'point' => $point,
         ]);
     }
 

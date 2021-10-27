@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{__('Dashboard')}}</strong>
+        {{__('Pembimbing Akademik Dashboard')}}</strong>
     </x-slot>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="flex shadow rounded-lg">
@@ -8,7 +8,7 @@
             <div class="bg-gray-50 p-5 flex w-full justify-between rounded-r-lg">
                 <div>
                     <p class="uppercase text-xs text-blue-500 font-semibold">Jumlah Point Terkumpul</p>
-                    <p class="font-black font-quick text-xl">{{ __('Undercontruction') }}</p>
+                    <p class="font-black font-quick text-xl">{{ $point }}</p>
                 </div>
                 <div>
                     <i class="fas fa-address-card fa-2x text-gray-300"></i>

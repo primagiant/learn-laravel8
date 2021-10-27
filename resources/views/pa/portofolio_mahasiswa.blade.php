@@ -90,7 +90,7 @@
                             </div>
                             @else
                             <span class="bg-green-600 p-1.5 text-white rounded-lg text-sm">
-                                <i class="fas fa-check"></i>
+                                <i class="fas fa-check-circle"></i>
                                 Verified
                             </span>
                             @endif
